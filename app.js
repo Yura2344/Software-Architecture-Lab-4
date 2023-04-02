@@ -12,7 +12,7 @@ app.use(express.static(__dirname + "/public"));
 mongoose.connect("mongodb://root:mypassword@127.0.0.1:27017/carsdb?authMechanism=DEFAULT&authSource=admin")
 .then(() => {
     app.listen(3000, function(){
-        console.log("Сервер ожидает подключения...");
+        console.log("Server is waiting for connection...");
     });
 }).catch((err) => console.log(err));
   
@@ -45,9 +45,8 @@ app.post("/api/cars", jsonParser, function (req, res) {
 });
      
 app.delete("/api/cars/:id", function(req, res){
-         
     const id = req.params.id;
-    Car.findByIdAndDelete(id).then(function(caar){
+    Car.findByIdAndDelete(id).then(function(car){
         res.send(car);
     }).catch((err) => console.log(err));
 });
